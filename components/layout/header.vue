@@ -1,5 +1,6 @@
 <template>
   <div class="header">
+    <!-- <Title>{{ titleGetter() }}</Title> -->
     <div class="mainWeb">
       <a class="logo" href="/"></a>
       <div class="tabGroup">
@@ -22,7 +23,6 @@
 </template>
 <script lang="ts" setup>
 const route = useRoute();
-
 const tabList = reactive([
   {
     url: "/solution",
@@ -45,6 +45,22 @@ const tabList = reactive([
     label: "关于点溪",
   },
 ]);
+
+const titleGetter = () => {
+  const curLabel = tabList.find((_item) => {
+    return _item.url === route.path;
+  })?.label;
+  if (curLabel) {
+    return `${curLabel} -- 点溪环保`;
+  }
+  return "点溪环保";
+};
+
+useSeoMeta({
+  title: titleGetter(),
+  ogTitle: "点溪环保",
+  description: "点溪环保，做您身边的排水体系的科技先行者",
+});
 </script>
 <style lang="scss" scoped>
 .header {

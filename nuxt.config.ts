@@ -7,4 +7,5 @@ export default defineNuxtConfig({
     server: true,
     client: true,
   },
+  ssr: true,
 });
